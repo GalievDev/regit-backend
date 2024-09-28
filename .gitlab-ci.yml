@@ -23,16 +23,6 @@ test:
   script:
     - gradle test
 
-docker-build:
-  stage: docker-build
-  image: docker:latest
-  services:
-    - docker:dind
-  script:
-    - docker build -t $IMAGE_TAG .
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker push $IMAGE_TAG
-
 deploy:
   stage: deploy
   image: alpine
