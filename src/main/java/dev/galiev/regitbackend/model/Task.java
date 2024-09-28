@@ -7,34 +7,24 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Table(name = "projects")
-public class Project {
+@Table(name = "tasks")
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
+    private String name;
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    private Date expirationAt;
+    private TaskStatus status;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "project_id")
     @JsonIgnore
-    private User owner;
-    @ManyToMany
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
-    private List<User> contributors;
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Task> tasks;
-
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
-    }
+    private Project project;
 }

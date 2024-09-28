@@ -23,6 +23,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private Role role;
+    private String bio;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Project> projects;
 
