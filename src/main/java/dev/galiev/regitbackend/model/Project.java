@@ -27,8 +27,11 @@ public class Project {
     @JsonIgnore
     private User owner;
     @ManyToMany
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
+    @JoinTable(
+            name = "project_contributors",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private List<User> contributors;
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks;

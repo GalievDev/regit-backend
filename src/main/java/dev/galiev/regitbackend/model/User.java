@@ -24,8 +24,10 @@ public class User implements UserDetails {
     private String password;
     private Role role;
     private String bio;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Project> projects;
+    @ManyToMany(mappedBy = "contributors")
+    private List<Project> contributedProjects;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

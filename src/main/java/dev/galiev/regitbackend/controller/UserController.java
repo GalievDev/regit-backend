@@ -39,7 +39,7 @@ public class UserController {
                     if (project.getDescription() == null || project.getTitle() == null) {
                         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                     }
-                    project.setUser(user);
+                    project.setOwner(user);
                     return new ResponseEntity<>(projectRepository.save(project), HttpStatus.CREATED);
                 })
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
