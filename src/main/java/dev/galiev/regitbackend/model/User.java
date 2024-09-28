@@ -37,7 +37,7 @@ public class User implements UserDetails {
         return email;
     }
 
-    public boolean hasPermission(Project task) {
-        return projects.contains(task);
+    public boolean hasPermission(Project project) {
+        return projects.contains(project);
     }
 }
