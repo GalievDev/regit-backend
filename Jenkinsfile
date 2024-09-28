@@ -17,7 +17,7 @@ pipeline {
         stage('Push to Registry') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.gitlab.com', 'CI_REGISTRY_PASSWORD') {
+                    docker.withRegistry('https://registry.gitlab.com/', 'CI_REGISTRY_PASSWORD') {
                         docker.image("regit-backend:${env.BUILD_ID}").push()
                     }
                 }
