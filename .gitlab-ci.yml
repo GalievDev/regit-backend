@@ -1,13 +1,13 @@
-image: maven:3.8.1-jdk-11
+image: gradle:7.0-jdk-17
 
 stages:
   - build
   - test
-  - docker-build
   - deploy
 
 variables:
   DOCKER_DRIVER: overlay2
+  CI_REGISTRY_PASSWORD: $CI_REGISTRY_PASSWORD
 
 before_script:
   - export PROJECT_NAME=regit-backend
@@ -16,12 +16,12 @@ before_script:
 build:
   stage: build
   script:
-    - mvn clean package -DskipTests
+    - gradle build
 
 test:
   stage: test
   script:
-    - mvn test
+    - gradle test
 
 docker-build:
   stage: docker-build
