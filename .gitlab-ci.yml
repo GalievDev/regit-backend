@@ -1,4 +1,4 @@
-image: gradle:7.0-jdk-17
+image: gradle:7.0-jdk-11
 
 stages:
   - build
